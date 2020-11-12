@@ -4,6 +4,7 @@ import io.dhruv.blockchain.model.Block;
 import io.dhruv.blockchain.model.Node;
 import io.dhruv.blockchain.model.Transaction;
 import javafx.scene.control.cell.CheckBoxListCell;
+import netscape.javascript.JSObject;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -53,6 +54,14 @@ public class Test {
             }
         }
 
+        //just for checking Invalidity
+        //blockchain.getLastBlock().setPrevHash("cdcwdcw");
+
+        //check Validity of the blockchain
+        if (blockchain.isValid())
+            System.out.println("\n--------Blockchain is Valid---------\n");
+        else
+            System.out.println("\n---------Blockchain is Invalid-------\n");
 
         //Show Block Information
         showBlockInformation();

@@ -60,6 +60,28 @@ public class Blockchain {
         return true;
     }
 
+    //Validity
+    public boolean isValid(){
+        if(this.chain.size()==0) return true;
+        if(this.chain.size()==1){
+            Block gBlock = this.chain.get(0);
+            if(gBlock.getHash().equals(gBlock.calculateHash()))
+                 return true;
+            return false;
+        }
+        Block prevBlock = this.chain.get(0);
+        for(int i=1;i<this.chain.size();i++){
+            Block currBlock = this.chain.get(i);
+            if(!prevBlock.getHash().equals(currBlock.getPrevHash()))
+                return false;
+            if(!currBlock.getHash().equals(currBlock.calculateHash())||!prevBlock.getHash().equals(prevBlock.calculateHash()))
+                return false;
+            prevBlock = currBlock;
+        }
+        return true;
+
+    }
+
     public int length(){
         return this.chain.size();
     }
